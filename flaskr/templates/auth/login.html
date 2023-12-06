@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Log In
+{% endblock %}
+
+{% block main %}
+  <h1 class="text-center pt-5 pb-3">Chat with Your Friends</h1>
+  <form action="/login" method="post" class="form">
+    <div class="mb-3 text-center">
+      <label for="username" class="form-label">Username</label>
+      <input autocomplete="off" autofocus class="form-control" id="username" name="username" type="text">
+    </div>
+    <div class="mb-3 text-center">
+      <label for="password" class="form-label">Password</label>
+      <input autocomplete="off" class="form-control" id="password" name="password" type="password">
+    </div>
+    <div class="d-grid">
+      <input type="submit" class="btn btn-primary" value="Log In">
+    </div>
+  </form>
+  <p class="text-center pt-3">Don't you have an account yet? <a href="/register">Register</a></p>
+{% endblock %}

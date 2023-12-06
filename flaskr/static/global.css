@@ -1,0 +1,80 @@
+*
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body
+{
+  display: grid;
+  grid-template-rows: 56px auto 56px;
+  height: 100vh;
+}
+
+p
+{
+  margin: 0;
+}
+
+/* Header and Navbar */
+
+#main-header
+{
+  grid-area: 1;
+  z-index: 100;
+}
+
+/* Main */
+
+main
+{
+  grid-area: 2;
+}
+
+/* Footer */
+
+footer
+{
+  grid-area: 3;
+  z-index: 100;
+}
+
+footer p
+{
+  margin: 0;
+  padding: 1rem 0;
+}
+
+/* Form */
+
+form
+{
+  width: 95%;
+  max-width: 20rem;
+  margin: 0 auto;
+}
+
+.flash
+{
+  width: 95%;
+  max-width: 20rem;
+  margin: 0 auto;
+  color: red;
+}
+
+.flash:last-child
+{
+  padding-bottom: 0;
+}
+
+form label
+{
+  display: block;
+  text-align: left;
+}
+
+form input
+{
+  width: 100%;
+}

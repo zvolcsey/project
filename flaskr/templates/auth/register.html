@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Register
+{% endblock %}
+
+{% block main %}
+  <h1 class="text-center pt-5 pb-3">Chat with Your Friends</h1>
+  <form action="/register" method="post">
+    <div class="mb-3 text-center">
+      <label for="username" class="form-label">Username</label>
+      <input autocomplete="off" autofocus class="form-control" id="username" name="username" type="text">
+    </div>
+    <div class="mb-3 text-center">
+      <label for="password" class="form-label">Password</label>
+      <input autocomplete="off" class="form-control" id="password" name="password" type="password">
+    </div>
+    <div class="mb-3 text-center">
+      <label for="confirmation" class="form-label">Confirmation</label>
+      <input autocomplete="off" class="form-control" id="confirmation" name="confirmation" type="password">
+    </div>
+    <div class="d-grid">
+      <input type="submit" class="btn btn-primary" value="Register">
+    </div>
+  </form>
+  <p class="text-center pt-3">Do you already have an account? <a href="/login">Login</a></p>
+{% endblock %}
