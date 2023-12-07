@@ -45,36 +45,3 @@ footer p
   margin: 0;
   padding: 1rem 0;
 }
-
-/* Form */
-
-form
-{
-  width: 95%;
-  max-width: 20rem;
-  margin: 0 auto;
-}
-
-.flash
-{
-  width: 95%;
-  max-width: 20rem;
-  margin: 0 auto;
-  color: red;
-}
-
-.flash:last-child
-{
-  padding-bottom: 0;
-}
-
-form label
-{
-  display: block;
-  text-align: left;
-}
-
-form input
-{
-  width: 100%;
-}

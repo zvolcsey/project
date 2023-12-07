@@ -43,5 +43,9 @@ def create_app(test_config=None):
   # Import and register the chat blueprint
   from . import chat
   app.register_blueprint(chat.bp)
+
+  # Import and register the friends blueprint
+  from . import friends
+  app.register_blueprint(friends.bp)
   
   return app

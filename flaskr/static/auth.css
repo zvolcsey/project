@@ -1,0 +1,19 @@
+/* Form */
+
+form
+{
+  width: 95%;
+  max-width: 20rem;
+  margin: 0 auto;
+}
+
+form label
+{
+  display: block;
+  text-align: left;
+}
+
+form input
+{
+  width: 100%;
+}

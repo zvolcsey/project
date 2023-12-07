@@ -4,6 +4,38 @@
   Dashboard
 {% endblock %}
 
+{% block stylesheet %}
+  <link href="../../static/index.css" rel="stylesheet">
+{% endblock %}
+
 {% block main %}
-  <h1>Hello, {{ username }}!</h1>
+  <h1 class="text-center pt-4 pb-4">Hello, {{ username }}!</h1>
+  <form action="/search" method="post" id="search-user-form">
+    <div class="mb-3 text-center">
+      <label for="username" class="form-label">Username</label>
+      <input autocomplete="off" autofocus class="form-control" type="search" id="username" name="username">
+    </div>
+    <input type="submit" class="btn btn-primary" value="Search">
+  </form>
+  {% if found_users is none %}
+  {% elif found_users %}
+  <h2 class="text-center mt-5 mb-4">Found users:</h2>
+  <ul class="users-list list-group">
+    {% for user in found_users %}
+        <li class="list-group-item">
+          <span>{{ user.username }}</span>
+          <form action="/add-friend">
+            {% if user.username == username %}
+              <span class="text-center">You</span>
+            {% else %}
+              <input type="submit" class="add-friend-btn btn btn-primary btn-sm" value="Add friend">
+            {% endif %}
+          </form>
+        </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <h2 class="text-center mt-5 mb-4">Found users:</h2>
+  <p class="text-center">Found no user</p>
+  {% endif %}
 {% endblock %}

@@ -4,6 +4,10 @@
   Log In
 {% endblock %}
 
+{% block stylesheet %}
+  <link href="../../static/auth.css" rel="stylesheet">
+{% endblock %}
+
 {% block main %}
   <h1 class="text-center pt-5 pb-3">Chat with Your Friends</h1>
   <form action="/login" method="post" class="form">

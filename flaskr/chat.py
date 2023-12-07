@@ -29,4 +29,4 @@ def index():
   ).fetchone()
 
   # Render the index.html template
-  return render_template("chat/index.html", username=user["username"])
+  return render_template("chat/index.html", username=user["username"], found_users=None)
