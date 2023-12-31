@@ -1,5 +1,5 @@
 # Real-Time Chat App - CS50x 2023 Final Project
-#### Video Demo: TODO
+#### Video Demo: https://www.youtube.com/watch?v=FbekqTuzZPw
 #### Description:
 
 ## Overview
