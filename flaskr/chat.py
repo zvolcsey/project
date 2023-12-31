@@ -90,6 +90,10 @@ def send_message():
   if user_result is None:
     return render_template("error.html", status=400, message="recipient user's data not found")
 
+  # Ensure logged user's id and recipient's id was not the same
+  if logged_user["id"] == user_result["id"]:
+    return render_template("error.html", status=400, message="you can't have a chat with yourself")
+
   resource_id = None
 
   # Lookup the room's resource_id
