@@ -5,15 +5,15 @@
 {% endblock %}
 
 {% block stylesheet %}
-  <link href="../../static/index.css" rel="stylesheet">
+  <link href="../../static/css/index.css" rel="stylesheet">
 {% endblock %}
 
 {% block main %}
   <h1 class="text-center pt-4 pb-4">Hello, {{ username }}!</h1>
-  <form action="/search" method="post" id="search-user-form">
+  <form action="/search" method="get" id="search-user-form">
     <div class="mb-3 text-center">
       <label for="username" class="form-label">Username</label>
-      <input autocomplete="off" autofocus class="form-control" type="search" id="username" name="username">
+      <input autocomplete="off" autofocus class="form-control" type="search" id="username" name="q">
     </div>
     <input type="submit" class="btn btn-primary" value="Search">
   </form>
@@ -24,13 +24,19 @@
     {% for user in found_users %}
         <li class="list-group-item">
           <span>{{ user.username }}</span>
-          <form action="/add-friend">
-            {% if user.username == username %}
-              <span class="text-center">You</span>
-            {% else %}
-              <input type="submit" class="add-friend-btn btn btn-primary btn-sm" value="Add friend">
-            {% endif %}
-          </form>
+          {% if user.username == username %}
+            <span class="text-center">You</span>
+          {% else %}
+            <form action="/send-message" method="post" onsubmit={handleSubmit(event)}>
+              <input type="hidden" name="username" value="{{ user.username }}">
+              <button
+                type="submit"
+                class="btn btn-primary btn-small submit-btn"
+              >
+                Send message
+              </button>
+            </form>
+          {% endif %}
         </li>
     {% endfor %}
   </ul>
@@ -38,4 +44,8 @@
   <h2 class="text-center mt-5 mb-4">Found users:</h2>
   <p class="text-center">Found no user</p>
   {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="../../static/js/index.js"></script>
 {% endblock %}

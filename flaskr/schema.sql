@@ -1,4 +1,9 @@
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS rooms;
+DROP INDEX IF EXISTS index_username;
+DROP INDEX IF EXISTS index_resource_id;
+DROP INDEX IF EXISTS index_creadet_at;
 
 CREATE TABLE users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -7,3 +12,26 @@ CREATE TABLE users (
   username TEXT UNIQUE NOT NULL,
   hash TEXT NOT NULL
 );
+
+CREATE INDEX index_username ON users(username);
+
+CREATE TABLE rooms (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  resource_id TEXT UNIQUE NOT NULL,
+  participant1_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  participant2_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  UNIQUE (participant1_id, participant2_id)
+);
+
+CREATE INDEX index_resource_id ON rooms(resource_id);
+
+CREATE TABLE messages (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  author_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  room_id INTEGER NOT NULL REFERENCES rooms(id) ON DELETE CASCADE,
+  message TEXT NOT NULL
+);
+
+CREATE INDEX index_creadet_at ON messages(created_at);

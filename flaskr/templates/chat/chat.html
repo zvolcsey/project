@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Chat
+{% endblock %}
+
+{% block stylesheet %}
+  <link href="../../static/css/chat.css" rel="stylesheet">
+{% endblock %}
+
+{% block main %}
+  <div class="chat">
+    <div class="chat-header">
+      <span class="recipient-name">{{ members["recipient"] }}</span>
+    </div>
+    <ul id="chat-messages">
+      {% for message in messages %}
+        {% if message["username"] == members["sender"] %}
+        <li class="sender bg-primary">
+          <span class="author">{{ members["sender"] }}</span>
+          <span class="message">{{ message["message"] }}</span>
+          <small class="date">{{ message["created_at"] }}</small>
+        </li>
+        {% else %}
+        <li class="recipient">
+          <span class="author">{{ members["recipient"] }}</span>
+          <span class="message">{{ message["message"] }}</span>
+          <small class="date">{{ message["created_at"] }}</small>
+        </li>
+        {% endif %}
+      {% endfor %}
+      {% if messages|length == 0 %}
+        <p class="no-messages">No messages here, yet!</p>
+      {% endif %}
+    </ul>
+    <textarea autocomplete="off" rows="2" id="message-textarea" class="form-control" name="message-textarea" type="text" placeholder="Message"></textarea>
+  </div>
+{% endblock %}
+{% block scripts %}
+  {{ super() }}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js" integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA==" crossorigin="anonymous"></script>
+  <script src="../../static/js/chat.js"></script>
+{% endblock %}

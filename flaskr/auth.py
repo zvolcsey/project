@@ -60,8 +60,8 @@ def register():
       hash = generate_password_hash(password)
 
       # Add user to the database
-      user_id = db.execute(
-        "INSERT INTO users (username, hash) VALUES (?, ?) RETURNING id",
+      user = db.execute(
+        "INSERT INTO users (username, hash) VALUES (?, ?) RETURNING id, username;",
         (username, hash)
       ).fetchone()
 
@@ -77,7 +77,7 @@ def register():
       return render_template("error.html", status=500, message="transaction was NOT successfull")
     
     # Log user in
-    session["user_id"] = user_id["id"]
+    session["user_id"] = user["id"]
 
     # Redirect user to the index page
     return redirect(url_for("chat.index"))
