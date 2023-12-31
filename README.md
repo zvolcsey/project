@@ -49,19 +49,35 @@ You need have Python 3.10.12 or higher.
 
 ### Preparation:
 
+- I used Ubuntu WSL for the development
+- clone the project
 - create .env file and SECRET_KEY=<SECRET_KEY>
 
 ### Run
 ```sh
+  # Ubuntu WSL
+  sudo apt update && sudo apt upgrade
+  sudo apt upgrade python3
+  sudo apt install python3-pip
+  sudo apt install python3-venv
+
+  # create venv
+  python3 -m venv .venv
+
+  # Activate the venv
+  source .venv/bin/activate
 
   # install dependencies
   pip install -r requirement.txt
 
   # init database
-  flask --ap flaskr init-db 
+  flask --app flaskr init-db 
 
-  # run in localhost
+  # run in locally
   flask --app flaskr run --debug
+
+  # Deactivate venv, if you close the project
+  deactivate
 ```
 
 ## Port
